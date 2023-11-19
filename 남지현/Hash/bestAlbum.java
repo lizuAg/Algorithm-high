@@ -53,6 +53,8 @@ class Solution {
         }
         
         int compareTo(Music m) {
+            if (m.playNumber.equals(this.playNumber))
+                return this.id-m.id;
             return m.playNumber-this.playNumber;
         }
     }
