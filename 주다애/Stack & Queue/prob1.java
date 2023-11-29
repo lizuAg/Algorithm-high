@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Solution {
+class Prob1 {
     public int[] solution(int []arr) {
         Stack<Integer> stack = new Stack<>();
         int len = arr.length;

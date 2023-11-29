@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class Hash1 {
     public String solution(String[] participant, String[] completion) {
         String answer = "";
         HashMap<String, Integer> map = new HashMap<>();

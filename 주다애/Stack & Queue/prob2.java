@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class Prob2 {
     // 리턴 값을 바꿨는데.. 괜찮을까..?
     public ArrayList<Integer> solution(int[] progresses, int[] speeds) {
         ArrayList<Integer> answer = new ArrayList<>();

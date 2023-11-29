@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-class Solution {
+class Prob3 {
     boolean solution(String s) {
         boolean answer = true;
         Stack<String> stack = new Stack<>();

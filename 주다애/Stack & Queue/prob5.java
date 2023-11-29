@@ -1,6 +1,11 @@
 import java.util.*;
 
 class Truck {
+    public static void main(String[] args) {
+        Truck truck = new Truck();
+        int res = truck.solution(2, 10, new int[]{7, 4, 5, 6});
+        System.out.println(res);
+    }
     public int solution(int bridge_length, int weight, int[] truck_weights) {
         int answer = 0;
         int sum = 0;
