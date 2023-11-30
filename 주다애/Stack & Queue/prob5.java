@@ -10,49 +10,42 @@ class Truck {
         int answer = 0;
         int sum = 0;
         Queue<Integer> q = new LinkedList<>();
-
-        // truck을 넣어주면서 계산해준다.
-        for (Integer truck : truck_weights) {
-            while (true) {
-                if (q.isEmpty()) {
-                    q.offer(truck);
+        for(Integer t : truck_weights) {
+            while(true) {
+                if(q.isEmpty()) {
+                    q.offer(t);
+                    sum += t;
                     answer++;
-                    sum += truck;
                     break;
                 }
-                // 다리가 다 차있는 경우
-                else if (q.size() == bridge_length) {
-                    // 맨 앞의 트럭을 빼준다.
-                    int out = q.poll();
-                    sum -= out;
+                else if(q.size() == bridge_length) {
+                    int target = q.poll();
+                    sum -= target;
                     answer++;
-                    // 현재 트럭으로 계산한다.
-                    if (sum + truck <= weight) {
-                        sum += truck;
-                        q.offer(truck);
+                    if(sum + t <= weight) {
+                        q.offer(t);
+                        sum += t;
                         break;
                     }
                     else {
-                        // 자릿수 채우기
+                        // while문 무한루프 방지. 0을 넣어줘서 sum에 영향 안주고 while문 진행시킴
                         q.offer(0);
                     }
                 }
-                // 다리가 다 차지 않은 경우
+                // 어차피 하나씩 offer해주므로 q.size()가 bridge_length를 넘어갈 일이 없다.
                 else {
-                    // 일단 개수 +1을 해준다.
                     answer++;
-                    if (sum + truck <= weight) {
-                        sum += truck;
-                        q.offer(truck);
+                    if(sum + t <= weight) {
+                        q.offer(t);
+                        sum += t;
                         break;
                     }
                     else {
-                        // 자릿수 채우기
                         q.offer(0);
                     }
                 }
             }
         }
-        return (answer + bridge_length);
+        return answer+bridge_length;
     }
 }
