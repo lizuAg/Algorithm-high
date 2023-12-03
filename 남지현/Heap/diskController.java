@@ -3,24 +3,24 @@ import java.util.*;
 class Solution {
     public int solution(int[][] jobs) {
         PriorityQueue<Job> queue = new PriorityQueue<>();
-        Arrays.sort(jobs, (job1, job2) -> job1[0]==job2[0]? job1[1]-job2[1]:job1[0]-job2[0]);
+        Arrays.sort(jobs, (job1, job2) -> job1[0]-job2[0]);
         List<Job> completedJobs = new ArrayList<>();
         int now = 0;
-        int end = 0;
+        int index = 0;
         int count = 0;
         while(count < jobs.length) {
-            while(now < jobs.length && jobs[now][0] <= end) {
-                int[] jobInfo = jobs[now++];
+            while(index < jobs.length && jobs[index][0] <= now) {
+                int[] jobInfo = jobs[index++];
                 queue.add(new Job(jobInfo[0], jobInfo[1]));
             }
             if (!queue.isEmpty()) {
                 Job job = queue.poll();
-                job.startTime = end;
+                job.startJob(now);
+                now += job.processTime;
                 completedJobs.add(job);
-                end += job.processTime;
                 count++;
             } else{
-                end++;
+                now++;
             }
         }
 
@@ -37,6 +37,10 @@ class Solution {
             this.requestTime = requestTime;
             this.processTime = processTime;
             this.startTime = -1;
+        }
+        
+        public void startJob(int time) {
+            this.startTime = time;
         }
 
         public int calculateCompletion() {
