@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class Hash5 {
     public int[] solution(String[] genres, int[] plays) {
         // 장르별 총 재생 횟수를 저장할 Map 생성
         Map<String, Integer> genreTotalPlay = new HashMap<>();

@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-class Solution {
+class Hash3 {
     public boolean solution(String[] phone_book) {
         boolean answer = true;
         int len = phone_book.length;
