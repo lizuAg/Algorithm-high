@@ -21,15 +21,12 @@
 - 힙 트리에서는 중복된 값을 허용한다. (이진 탐색 트리에서는 중복된 값을 허용하지 않는다.)
 
 ### 힙의 종류
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f99fbc47-4105-4bee-84c9-8fff10da1b47/6b84c3ba-580b-4814-bc68-c23749b4898a/Untitled.png)
-
 - 최대 힙(max heap)
     - 부모 노드의 키 값이 자식 노드의 키 값보다 크거나 같은 완전 이진 트리
-    - key(부모 노드) >= key(자식 노드)
+    - key(부모 노드) >= key(자식 노드) : 루트가 max 값이다.
 - 최소 힙(min heap)
     - 부모 노드의 키 값이 자식 노드의 키 값보다 작거나 같은 완전 이진 트리
-    - key(부모 노드) <= key(자식 노드)
+    - key(부모 노드) <= key(자식 노드) : 루트가 min 값이다.
 
 ### 힙의 삽입/삭제
 
@@ -42,31 +39,6 @@
     - 힙을 재구성한다.
 
 ## Priority Queue - JAVA
-
-- **Class PriorityQueue<E>1**
-    
-    
-    | Modifier and Type | Method and Description |
-    | --- | --- |
-    | boolean | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html#add-E-(https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html e)
-    Inserts the specified element into this priority queue. |
-    | boolean | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html#offer-E-(https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html e)
-    Inserts the specified element into this priority queue. |
-    | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html#poll--()
-    Retrieves and removes the head of this queue, or returns null if this queue is empty. |
-    | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html#peek--()
-    Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty. |
-    | boolean | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html#remove-java.lang.Object-(https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html o)
-    Removes a single instance of the specified element from this queue, if it is present. |
-    | void | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html#clear--()
-    Removes all of the elements from this priority queue. |
-    | int | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html#size--()
-    Returns the number of elements in this collection. |
-    | boolean | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html#contains-java.lang.Object-(https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html o)
-    Returns true if this queue contains the specified element. |
-- Code 1
-    
-    ```java
     
     //생성
     PriorityQueue<Integer> minHeap = new PriorityQueue<>();
@@ -75,25 +47,16 @@
     //삽입
     minHeap.add(1);
     maxHeap.offer(2);
-    
+
+    //참조
+    minHeap.peek();
+
+    //삭제
+    minHeap.poll();
+
+    //특정값 삭제
+    minHeap.remove(1);
     ...
-    ```
-    
-- **Class PriorityQueue<E> 2**
-    
-    
-    | Modifier and Type | Method and Description |
-    | --- | --- |
-    | https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html<https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html> | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html#iterator--()
-    Returns an iterator over the elements in this queue. |
-    | https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html<? super https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html> | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html#comparator--()
-    Returns the comparator used to order the elements in this queue, or null if this queue is sorted according to the https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html of its elements. |
-    | https://docs.oracle.com/javase/8/docs/api/java/util/Spliterator.html<https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html> | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html#spliterator--()
-    Creates a https://docs.oracle.com/javase/8/docs/api/java/util/Spliterator.html#binding and fail-fast https://docs.oracle.com/javase/8/docs/api/java/util/Spliterator.html over the elements in this queue. |
-    | https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html[] | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html#toArray--()
-    Returns an array containing all of the elements in this queue. |
-    | <T> T[] | https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html#toArray-T:A-(T[] a)
-    Returns an array containing all of the elements in this queue; the runtime type of the returned array is that of the specified array. |
 
 ### 참고
 
