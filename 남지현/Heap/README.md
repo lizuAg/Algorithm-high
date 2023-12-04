@@ -7,6 +7,7 @@
     <img src="https://github.com/lizuAg/Algorithm-high/assets/87467801/4aed46aa-b957-40a8-a252-9a880b1a9baf" width=800>
     * 루트부터 리프 노드까지 왼쪽에서 오른쪽 방향으로 인덱스를 붙여서 배열로 구현하고 인덱스로 부모, 자식 노드를 계산하기 위함인 것 같습니다.
     * 예시: heap = [2, 8, 12, 23, 40]
+    * 인덱스 i인 노드의 부모노드 인덱스는 floor((i-1)/2) (루트 인덱스가 0일 때)
 
 ### 연산
 1. 삽입
@@ -20,6 +21,25 @@
 1. 파이썬에서는 리스트를 힙처럼 사용할 수 있는 heapq 모듈 → heapify(), heappop(), heappush()
 2. 자바에서는 PriorityQueue 클래스를 사용한다.
 3. 기본적으로 Min Heap의 형태를 가진다.
-4. 클래스를 새로 만들어서 Comparable 클래스를 상속해주고 compareTo 메서드를 오버라이딩하면 PriorityQueue 객체 생성시 정렬 기준을 정의하지 않아도 된다.
+4. 클래스를 새로 만들어서 Comparable 클래스를 상속해주고 compareTo() 메서드를 오버라이딩하면 PriorityQueue 객체 생성시 정렬 기준을 정의하지 않아도 된다.
 5. 자바의 PriorityQueue
+   ```java
+   import java.util.PriorityQueue;
+
+    PriorityQueue<Integer> ascQueue = new PriorityQueue<>();
+    PriorityQueue<Integer> descQueue = new PriorityQueue<>(Collections.reverseOrder());
+
+    // Queue 인터페이스를 구현한 클래스이므로 기본적으로 메서드는 동일
+    // item 삽입 ()
+    boolean add(T item); // 삽입 실패할 경우 IllegalStateException 발생
+    boolean offer(T item); // 삽입 실패할 경우 false 반환
+
+    // item 제거 후 반환
+    T remove(); // 큐 비어있을 경우 NoSuchElementException 발생
+    T poll(); // 큐 비어있을 경우 null 반환
+
+    // item 제거하지 않고 반환
+    T element(); // 큐 비어있을 경우 NoSuchElementException 발생
+    T peek(); // 큐 비어있을 경우 null 반환
+   ```
    
