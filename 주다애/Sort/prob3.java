@@ -8,7 +8,6 @@ class Solution {
         Arrays.sort(citations);
         for(int i = 0; i < len; i++) {
             int cnt = len - i;
-            
             if(citations[i] >= cnt) {
                 answer = cnt;
                 break;
