@@ -139,7 +139,8 @@
         
     - TimSort
       
-        <img src= "https://prod-files-secure.s3.us-west-2.amazonaws.com/3bb0ce80-a7af-4bfe-90fe-7eccbc252c92/465b2a01-b025-404a-9296-30f9cfacf8dd/timSort.png" width=200/>
+        <img src= "https://github.com/NamJihyun99/Bank-Sample/assets/87467801/ebd16027-d067-4ed9-a25c-7b9ef49acfdd" width=400/>
+        
         - MergeSort와 InsertionSort를 합친 형태
         - MergeSort처럼 컬렉션을 분할하되, 일정 크기 이상 작아진 컬렉션에 대해서는 이진삽입정렬을 수행, 이진삽입정렬은 삽입정렬에서 원소가 삽입될 위치를 선형탐색이 아닌 이진탐색으로 찾는 형태.
 3. 차이점
