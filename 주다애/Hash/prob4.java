@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-class Solution {
+class Hash4 {
     public int solution(String[][] clothes) {
         int answer = 1;
         HashMap<String, Integer> map = new HashMap<>();

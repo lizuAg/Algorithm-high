@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-class Solution {
+class Hash2 {
     public int solution(int[] nums) {
         int answer = 0;
         int size = nums.length / 2;
