@@ -1,12 +1,11 @@
 # 4주차 정렬
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f99fbc47-4105-4bee-84c9-8fff10da1b47/5e04f4d5-06da-405c-85f2-822700c6dfc8/Untitled.png)
+![image](https://github.com/lizuAg/Algorithm-high/assets/68546023/031addaf-5da6-49ef-92da-638d9e42e71b)
+
 
 ## Quick Sort
 
 : 하나의 리스트를 피벗(pivot)을 기준으로 두 개의 **비균등한 크기로 분할**하고 분할된 부분 리스트를 정렬한 다음, 두 개의 정렬된 부분 리스트를 합하여 전체가 정렬된 리스트가 되게 하는 방법이다.
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f99fbc47-4105-4bee-84c9-8fff10da1b47/7837d4f1-7e4d-49d5-9a79-182ad00ed431/Untitled.png)
 
 | 최선 | O(nlogn) |
 | --- | --- |
@@ -19,10 +18,6 @@
 ## Merge Sort
 
 :  하나의 리스트를 두 개의 **균등한 크기**로 분할하고 분할된 부분 리스트를 정렬한 다음, 두 개의 정렬된 부분 리스트를 합하여 전체가 정렬된 리스트가 되게 하는 방법이다.
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f99fbc47-4105-4bee-84c9-8fff10da1b47/20483eef-e562-4976-996c-6f2e95aaf517/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f99fbc47-4105-4bee-84c9-8fff10da1b47/f08ef788-4b27-4c14-b309-4951fd609c5f/Untitled.png)
 
 | 최선 | O(nlogn) |
 | --- | --- |
@@ -96,6 +91,3 @@ class Fruit implements Comparable<Fruit> {
 - +) Interface는 정의된 메소드를 모두 구현해야 하는 것 아닌가요?
     
     가장 큰 수 문제에서 Comparator의 구현 클래스를 작성하고 compare() 메소드만 구현해서 풀었다. > Java 부터는 Interface에서 일반 메소드를 구현할 수 있도록 변경되었고, 추상메소드는 compare밖에 없다고 한다. 나머지는 default/static 메소드에 해당한다.
-    
-
-## 참고
