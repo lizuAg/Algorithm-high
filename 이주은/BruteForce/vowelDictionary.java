@@ -9,17 +9,13 @@ class Solution {
     }
     
     public static int findWord(String target, String str) {
-        System.out.println("in  "+index+": "+str);
-    
         if(str.equals(target)){
-           System.out.println("return1 "+index+" "+str);
            return index;
         }
 
         if(str.length() < 5)
             for(char c : alphabet){
                 if(sb.toString().equals(target)){
-                    System.out.println("return2 "+index+" "+str);
                     return index;
                 }
                 if(str.length()>1)
@@ -28,7 +24,6 @@ class Solution {
                 index = findWord(target, sb.toString(), ++index);
             }
         
-        System.out.println("out "+index+": "+str);
         return index;
     }
 }
