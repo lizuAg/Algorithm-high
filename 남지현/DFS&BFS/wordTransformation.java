@@ -3,27 +3,19 @@ class Solution {
     public int solution(String begin, String target, String[] words) {
         Queue<Node> queue = new LinkedList<>();
         queue.add(new Node(begin, 0));
-        if (!existedIn(target, words))
-            return 0;
         while (!queue.isEmpty()) {
             Node node = queue.poll();
             if (node.word.equals(target))
                 return node.depth;
             for (String word : words) {
+                if (node.depth == words.length)
+                    return 0;
                 if (node.transformedInto(word)) {
                     queue.add(new Node(word, node.depth + 1));
                 }
             }
         }
         return 0;
-    }
-    
-    private boolean existedIn(String target, String[] words) {
-        for (String word: words) {
-            if (target.equals(word))
-                return true;
-        }
-        return false;
     }
     
     static class Node {
