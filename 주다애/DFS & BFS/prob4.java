@@ -1,34 +1,56 @@
+import java.util.*;
+
+// BFS로 리팩토링
 class Solution {
-    int answer = Integer.MAX_VALUE;
+public int solution(String begin, String target, String[] words) {
+        int len = words.length;
+        boolean[] visited = new boolean[len];
+        Queue<Pair> queue = new LinkedList<>();
+        queue.offer(new Pair(begin, 0));
 
-    public int solution(String begin, String target, String[] words) {
-        boolean[] visited = new boolean[words.length];
-        dfs(begin, target, 0, words, visited);
-        return answer == Integer.MAX_VALUE ? 0 : answer;
-    }
+        while (!queue.isEmpty()) {
+            Pair pair = queue.poll();
+            String word = pair.getWord();
+            int step = pair.getStep();
 
-    public void dfs(String presentWord, String target, int count, String[] words, boolean[] visited) {
-        if (presentWord.equals(target)) {
-            answer = Math.min(answer, count);
-            return;
-        }
+            if(word.equals(target)) return pair.getStep();
 
-        for (int i = 0; i < words.length; i++) {
-            if (!visited[i] && canChange(presentWord, words[i])) {
-                visited[i] = true;
-                dfs(words[i], target, count + 1, words, visited);
-                visited[i] = false;
+            for(int i = 0; i < len; i++) {
+                if(changeWord(word, words[i]) && !visited[i]) {
+                    queue.offer(new Pair(words[i], step + 1));
+                    visited[i] = true;
+                }
             }
         }
+
+        return 0;
     }
 
-    public boolean canChange(String presentWord, String nextWord) {
-        int count = 0;
-        for (int i = 0; i < presentWord.length(); i++) {
-            if (presentWord.charAt(i) != nextWord.charAt(i)) {
-                count++;
+    private boolean changeWord(String cur, String word) {
+        int cnt = 0;
+        for (int i = 0; i < cur.length(); i++) {
+            if (cur.charAt(i) != word.charAt(i)) {
+                cnt++;
             }
         }
-        return count == 1 ? true : false;
+        return cnt == 1;
+    }
+}
+
+class Pair {
+    String word;
+    int step;
+
+    Pair(String word, int step) {
+        this.word = word;
+        this.step = step;
+    }
+
+    public String getWord() {
+        return word;
+    }
+
+    public int getStep() {
+        return step;
     }
 }
