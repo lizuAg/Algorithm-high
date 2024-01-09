@@ -2,13 +2,14 @@ import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Main {
-  static List<List<Integer>> map = new ArrayList<>();
+public class ComplexNumber {
+	static List<List<Integer>> map = new ArrayList<>();
 	static List<Integer> complex = new ArrayList<>();
 	static int[][] move = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 	static int count;
-  static void dfs(int idx, int x, int y, int depth) {
-    count++;
+	
+	static void dfs(int idx, int x, int y, int depth) {
+		count++;
 		for (int i = 0; i < 4; i++) {
 			int newX = x + move[i][0];
 			int newY = y + move[i][1];
