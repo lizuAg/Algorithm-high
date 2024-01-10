@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+// 토마토
 // 배열 값을 1로 바꾸는게 아니라 전날 값 + 1 로 해주는 것이 중요했던 것 같습니다!
 public class BaekJoon7569 {
     static int[][][] tomato;
