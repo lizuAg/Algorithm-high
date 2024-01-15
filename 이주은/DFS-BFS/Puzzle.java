@@ -3,14 +3,14 @@ import java.util.*;
 class Solution {
     int[] dx = {-1, 1, 0, 0}, dy = {0, 0, -1, 1};
     int size;
-
+    
     public int solution(int[][] game_board, int[][] table) {
         int answer = 0;
         size = game_board.length;
         Deque<int[]> queue = new ArrayDeque<>();
         List<Block> blankList = new ArrayList<>();
         List<Block> blockList = new ArrayList<>();
-
+        
         //빈칸 찾기
         int idx = 2;
         for(int i=0; i<size; i++){
@@ -25,7 +25,7 @@ class Solution {
             }
 
         }
-
+        
         //블록 찾기
         idx = 2;
         for(int i=0; i<size; i++){
@@ -39,21 +39,23 @@ class Solution {
                 }   
             }
         }
-
+        
+        
         //빈칸에 맞는 블록 찾기
         for (Block blank : blankList) {
             Iterator<Block> iterator = blockList.iterator();
-
+            
             while (iterator.hasNext()) {
                 Block block = iterator.next();
                 if (blank.size != block.size)
                     continue;
 
+                
                 boolean flag = false;
                 for (int i = 0; i < 4; i++) {
                     flag = blank.shapesMatch(block.shape);
                     if (flag) {
-                        answer++;
+                        answer += block.size;
                         iterator.remove();
                         break;
                     }
@@ -62,29 +64,28 @@ class Solution {
                 if (flag)
                     break;
             }
-        }
-
+        }        
         return answer;
 }
-
+    
     //bfs로 탐색하며 빈칸/블록에 idx로 마킹함.
     public int[] mark(int[][] map, Deque<int[]> queue, int idx, int flag){
         int minY = Integer.MAX_VALUE, minX = Integer.MAX_VALUE;
-
+        
         while(!queue.isEmpty()){
             int[] now = queue.poll();
-
+            
             if(minY > now[0])
                 minY = now[0];
             if(minX > now[1])
                 minX = now[1];
-
+            
             map[now[0]][now[1]] = idx;
-
+            
             for(int i=0; i<4; i++){
                 int x = now[1] + dx[i];
                 int y = now[0] + dy[i];
-
+                
                 if(x >= 0 && x < size && y >= 0 && y < size && map[y][x]==flag){
                     int[] yx = {y, x};
                     queue.add(yx);
@@ -94,11 +95,10 @@ class Solution {
         int[] startLoc = {minY, minX};
         return startLoc;
     }
-
+    
     public void makeBlock(int[][] map, int[] start, List<Block> list, int idx) {
         int[][] shape = new int[3][3];
         int cnt = 0;
-        idx = map[start[0]][start[1]];
 
         for(int i=0; i<3; i++){
             for(int j=0; j<3; j++){
@@ -116,26 +116,28 @@ class Solution {
 class Block {
     int[][] shape;
     int size;
-
+    
     public Block(int[][] shape, int size){
         this.shape = shape;
         this.size = size;
     }
-
+    
     public void rotate(){
-        int[][] temp = this.shape;
+        int[][] temp = new int[3][3];
 
-        for(int i=0; i<3; i++)
-            for(int j=0; j<3; j++)
-                shape[j][2-i] = temp[i][j]; 
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                temp[j][2 - i] = this.shape[i][j];
+
+        this.shape = Arrays.copyOf(temp, temp.length);
     }
-
+    
     public boolean shapesMatch(int[][] other){
         for(int i=0; i<3; i++)
             for(int j=0; j<3; j++)
-                if(shape[i][j] != shape[j][i])
+                if(shape[i][j] != other[i][j])
                     return false;
-
+        
         return true;
     }
 }
