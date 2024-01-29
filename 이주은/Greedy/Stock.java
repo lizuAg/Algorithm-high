@@ -10,18 +10,18 @@ class Main {
          int T = Integer.parseInt(br.readLine());
          
          for(int i=0; i<T; i++){
-             int sum = 0;
+             long sum = 0;
              int days = Integer.parseInt(br.readLine());
              
              String[] input = br.readLine().split(" ");
              
-             int[] prices = new int[days];
+             long[] prices = new long[days];
              for (int j = 0; j<days; j++)
                  prices[j] = Integer.parseInt(input[j]);
              
-             int high = prices[days-1];
+             long high = prices[days-1];
              for(int j=days-2; j>=0; j--){
-                 if(prices[j] > high){
+                 if(prices[j] >= high){
                      high = prices[j];
                  }
                  else{
