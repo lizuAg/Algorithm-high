@@ -38,9 +38,9 @@ class Solution {
         }
         
         for(int[] e : edge) {
-			list.get(e[0]).add(e[1]);
-			list.get(e[1]).add(e[0]);
-		}
+	    list.get(e[0]).add(e[1]);
+	    list.get(e[1]).add(e[0]);
+	}
 
         // BFS 탐색
         Queue<int[]> q = new LinkedList<>();
