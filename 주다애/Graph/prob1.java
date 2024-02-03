@@ -12,10 +12,10 @@ class Solution {
         // 인접 행렬 --> 8,9번 메모리 초과 이슈
         // int[][] matrix = new int[n + 1][n + 1];
         
-		// for(int[] e : edge) {
-		// 	matrix[e[0]][e[1]] = 1;
-		// 	matrix[e[1]][e[0]] = 1;
-		// }
+	// for(int[] e : edge) {
+	// 	matrix[e[0]][e[1]] = 1;
+	// 	matrix[e[1]][e[0]] = 1;
+	// }
         
         // 인접 행렬 풀이
         // while(!q.isEmpty()) {
