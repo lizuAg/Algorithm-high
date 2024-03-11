@@ -28,4 +28,4 @@
 |주차|문제집(링크)|
 |:--:|:--:|
 |1주차<br/>(시뮬레이션/구현)|[프로그래머스: 인형뽑기](https://school.programmers.co.kr/learn/courses/30/lessons/64061)<br/>[BOJ 13335번: 트럭](https://www.acmicpc.net/problem/13335)<br/>[BOJ 20055번: 컨베이어 벨트 위의 로봇](https://www.acmicpc.net/problem/20055)<br/>[BOJ 15686번: 치킨 배달](https://www.acmicpc.net/problem/15686)<br/>[프로그래머스: 기둥과 보](https://school.programmers.co.kr/learn/courses/30/lessons/60061)|
-|2주차||
+|2주차|[BOJ 17478번: 재귀함수가 뭔가요?](https://www.acmicpc.net/problem/17478)<br/>[BOJ 1339번: 단어수학](https://www.acmicpc.net/problem/1339)<br/>[BOJ 2307번: 도로검문](https://www.acmicpc.net/problem/2307)<br/>[BOJ 1238번: 파티](https://www.acmicpc.net/problem/1238)<br/>[프로그래머스: 숫자 문자열과 영단어](https://school.programmers.co.kr/learn/courses/30/lessons/81301)|
