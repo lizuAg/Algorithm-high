@@ -23,39 +23,15 @@ public class Main {
       return this.cost - o.cost;
     }
   }
-  public static int dijkstra1() {
+
+  public static int dijkstra(int closedStart, int closedEnd) {
     PriorityQueue<Road> pq = new PriorityQueue<>();
     int[] dist = new int[N + 1];
     Arrays.fill(dist, Integer.MAX_VALUE);
-
-    pq.offer(new Road(1, 0));
-    dist[1] = 0;
-
-    while (!pq.isEmpty()) {
-      Road road = pq.poll();
-      int node = road.node;
-      int cost = road.cost;
-
-      if (dist[node] < cost) continue;
-
-      for (Road nextRoad : graph.get(node)) {
-        int nextNode = nextRoad.node;
-        int nextCost = nextRoad.cost + cost;
-        
-        if (dist[nextNode] > nextCost) {
-          dist[nextNode] = nextCost;
-          pq.offer(new Road(nextNode, dist[nextNode]));
-          roadList.add(new Road(node, nextNode));
-        }
-      }
-    }
-    return dist[N];
-  }
-
-  public static int dijkstra2(int closedStart, int closedEnd) {
-    PriorityQueue<Road> pq = new PriorityQueue<>();
-    int[] dist = new int[N + 1];
-    Arrays.fill(dist, Integer.MAX_VALUE);
+    
+    boolean isFirst = false;
+    if(roadList.isEmpty())
+        isFirst = true;
 
     pq.offer(new Road(1, 0));
     dist[1] = 0;
@@ -75,6 +51,10 @@ public class Main {
         if (dist[nextNode] > nextCost) {
           dist[nextNode] = nextCost;
           pq.offer(new Road(nextNode, dist[nextNode]));
+          
+          if(isFirst){
+              roadList.add(new Road(node, nextNode));
+          }
         }
       }
     }
@@ -105,11 +85,11 @@ public class Main {
   public static void main(String[] args) throws IOException {
     int minTime, answer;
     read();
-    minTime = dijkstra1();//도로통제가 없는 최단 소요시간
+    minTime = dijkstra(-1, -1);//도로통제가 없는 최단 소요시간
     answer = 0;//최대소요시간(답)
 
     for(Road closed : roadList) {
-      int temp = dijkstra2(closed.node, closed.cost);
+      int temp = dijkstra(closed.node, closed.cost);
 
       //도로통제로 인하여 탈출을 완전 저지할 경우
       if(temp == Integer.MAX_VALUE){
