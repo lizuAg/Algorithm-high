@@ -5,7 +5,7 @@ public class Main {
   
   static final int MAX = 200000;
   
-  private static int oneZeroBFS(int N, int K) {
+  private static int bfs0_1(int N, int K) {
     if (N >= K)
       return N-K;
     Deque<int[]> dq = new LinkedList<>();
@@ -65,6 +65,6 @@ public class Main {
     BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
     String[] arg = bf.readLine().split(" ");
     System.out.println(dijkstra(Integer.parseInt(arg[0]), Integer.parseInt(arg[1])));
-    System.out.println(oneZeroBFS(Integer.parseInt(arg[0]), Integer.parseInt(arg[1])));
+    System.out.println(bfs0_1(Integer.parseInt(arg[0]), Integer.parseInt(arg[1])));
   }
 }
