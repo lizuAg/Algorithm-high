@@ -1,3 +1,5 @@
+//BOJ 10942 팰린드롬? (https://www.acmicpc.net/problem/10942)
+
 import java.io.*;
 import java.util.*;
 
@@ -15,7 +17,7 @@ class Main {
         dp = new boolean[N+1][N+1];
         
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for(int i=1; i<N; i++) {
+        for(int i=1; i<=N; i++) {
             nums[i] = Integer.parseInt(st.nextToken());
         }
 
@@ -36,7 +38,7 @@ class Main {
     }
 
     // dp[S][E]가 true : S~E가 팰린드롬.
-    // dp[S][E]가 true <- S == E && dp[S-1][E-1]
+    // dp[S][E]가 true <- S == E && dp[S+1][E-1]
     
     private static void setDp() {
          for(int i=1; i<=N; i++){
@@ -47,11 +49,10 @@ class Main {
              }
          }
 
-        for (int i=2; i<N; i++) {
-            for (int j=1; j<=N-i; j++) {
-                if (nums[j] == nums[j+i] && dp[j+1][j+i-1]) {
-                    dp[j][j+i] = true;
-                }
+        for(int len=2; len<N; len++) {//s+len<=N && s>=1
+            for(int s=1; s<=N-len; s++) {//s+len<=N
+                if(nums[s] == nums[s+len] && dp[s+1][s+len-1])
+                    dp[s][s+len] = true;
             }
         }
     }
