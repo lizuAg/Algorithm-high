@@ -1,7 +1,36 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Main {
+	
+	private static int solution2(int N, int M, int[][] map) {
+		int[] dx = {-1, 1, 0, 0, -1, -1, 1, 1};
+		int[] dy = {0, 0, -1, 1, -1, 1, -1, 1};
+		Queue<int[]> queue = new LinkedList<>();
+		int[][] dist = new int[N][M];
+		int answer = -1;
+		for (int i=0; i<N; i++) {
+			for (int j=0; j<M; j++) {
+				if (map[i][j] == 1)
+					queue.add(new int[] {i, j});
+			}
+		}
+		while (! queue.isEmpty()) {
+			int[] node = queue.poll();
+			for (int i=0; i<8; i++) {
+				int nx = node[0] + dx[i];
+				int ny = node[1] +dy[i];
+				if (nx<0 || nx>=N || ny<0 || ny>=M)
+					continue;
+				if (dist[nx][ny]!=0 || map[nx][ny]==1)
+					continue;
+				dist[nx][ny] = dist[node[0]][node[1]]+1;
+				answer = Math.max(answer, dist[nx][ny]);
+				queue.add(new int[] {nx, ny});
+			}
+		}
+		return answer;
+	}
 	
 	private static int solution(int N, int M, int[][] map) {
 		int[][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
@@ -47,7 +76,8 @@ public class Main {
 				map[i][j] = Integer.parseInt(arg[j]);
 			}
 		}
-		System.out.print(solution(N, M, map));
+		System.out.println(solution(N, M, map));
+		System.out.println(solution2(N, M, map));
 		bf.close();
 	}
 }
