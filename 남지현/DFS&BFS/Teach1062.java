@@ -3,9 +3,99 @@ import java.io.*;
 
 public class Main {
 	
+	static List<String> vocas;
 	static List<List<Character>> combinations = new ArrayList<>();
+	static boolean[] visited = new boolean[26];
+	static int flag;
+	static int max;
 	
-	private static int solution(int N, int K, List<String> vocas) {
+	private static int solution3(int N, int K) {		
+		if (K<5) {
+			max = 0;
+		} else if (K == 26) {
+			max = N;
+		} else {
+			flag=0;
+			max=0;
+			flag |= 1<<('a'-'a');
+			flag |= 1<<('c'-'a');
+			flag |= 1<<('i'-'a');
+			flag |= 1<<('n'-'a');
+			flag |= 1<<('t'-'a');
+			bitmasking(N, K, 0, 0);
+		}
+		return max;
+	}
+	
+	private static void bitmasking(int N, int K, int start, int depth) {
+		if (depth == K-5) {
+			int count=0;
+			for (int i=0; i<N; i++) {
+				boolean readable = true;
+				for (char c: vocas.get(i).toCharArray()) {
+					if ((flag & 1<<(c-'a')) == 0) {
+						readable = false;
+						break;
+					}
+				}
+				if (readable)
+					count++;
+			}
+			max = Math.max(max, count);
+			return;
+		}
+		for (int i=start; i<26; i++) {
+			if ((flag & 1<<i) == 0) {
+				flag |= 1<<i;
+				bitmasking(N, K, i, depth+1);
+				flag &= ~(1<<i);
+			}
+		}
+	}
+	
+	private static int solution2(int N, int K) {
+		max=0;
+		visited['a'-'a'] = true;
+		visited['c'-'a'] = true;
+		visited['i'-'a'] = true;
+		visited['n'-'a'] = true;
+		visited['t'-'a'] = true;
+		
+		if (K < 5) {
+			return 0;
+		} else {
+			backtracking(N, K, 0, 0);
+		}	
+		return max;
+	}
+	
+	private static void backtracking(int N, int K, int idx, int depth) {
+		if (depth == K-5) {
+			int count = 0;
+			for (int i=0; i<N; i++) {
+				boolean readable = true;
+				for (char c: vocas.get(i).toCharArray()) {
+					if (! visited[c-'a']) {
+						readable = false;
+						break;
+					}
+				}
+				if (readable) count++;
+			}
+			max = Math.max(max, count);
+		}
+		
+		for (int i=idx; i<26; i++) {
+			if (! visited[i]) {
+				visited[i] = true;
+				backtracking(N, K, i, depth+1);
+				visited[i] = false;
+			}
+		}
+	}
+	
+	
+	private static int solution(int N, int K) {
 		if (K < 5)
 			return 0;
 		Set<Character> fixed = Set.of('a', 'c', 'i', 'n', 't');
@@ -77,11 +167,13 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(bf.readLine());
 		int N = Integer.parseInt(st.nextToken());
 		int K = Integer.parseInt(st.nextToken());
-		List<String> vocas = new ArrayList<>();
+		vocas = new ArrayList<>();
 		for (int i=0; i<N; i++) {
 			vocas.add(bf.readLine());
 		}
-		System.out.println(solution(N, K, vocas));
+		System.out.println(solution(N, K));
+		System.out.println(solution2(N, K));
+		System.out.println(solution3(N, K));
 		bf.close();
 	}
 }
