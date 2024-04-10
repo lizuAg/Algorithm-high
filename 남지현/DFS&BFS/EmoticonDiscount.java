@@ -41,9 +41,9 @@ class Solution {
             return;
         }
         for (int i=0; i<4; i++) {
-            List<Integer> tmp = new ArrayList<>(cur);
-            tmp.add(discount[i]);
-            dfs(depth+1, end, tmp);
+            cur.add(discount[i]);
+            dfs(depth+1, end, cur);
+            cur.remove(cur.lastIndexOf(discount[i]));
         }
     }
 }
