@@ -2,7 +2,7 @@ import java.util.*;
 class Solution {
     
     static final Integer[] discount = {90, 80, 70, 60};
-    PriorityQueue<int[]> answer = new PriorityQueue<>();
+    PriorityQueue<int[]> answer;
     int[][] user;
     int[] emoticon;
     
