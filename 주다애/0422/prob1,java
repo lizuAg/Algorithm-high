@@ -1,0 +1,104 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+// 행렬(실버 1)
+// 예제는 통과하는데 틀림
+// 1. 60%에서 틀림
+// 2. 통과
+public class BaekJoon1080 {
+    static int n;
+    static int m;
+    static int[][] a;
+    static int[][] b;
+    static int[][] move = {
+            {0,0},{0,1},{0,2},
+            {1,0},{1,1},{1,2},
+            {2,0},{2,1},{2,2}
+    };
+    static int cnt;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer stt = new StringTokenizer(br.readLine(), " ");
+        n = Integer.parseInt(stt.nextToken());
+        m = Integer.parseInt(stt.nextToken());
+        a = new int[n][m];
+        b = new int[n][m];
+        for(int i = 0; i < n; i++) {
+            String line = br.readLine();
+            for(int j = 0; j < m; j++) {
+                // 공백 없이 숫자 받는 방법
+                a[i][j] = line.charAt(j) - '0';
+            }
+        }
+        for(int i = 0; i < n; i++) {
+            String line = br.readLine();
+            for(int j = 0; j < m; j++) {
+                b[i][j] = line.charAt(j) - '0';
+            }
+        }
+        // 2. 3*3을 충족하지 못하더라도 애초에 같은 행렬에 들어오면 0 출력
+        if(isSame()) {
+            System.out.println(0);
+            return;
+        }
+        change();
+        System.out.println(cnt);
+    }
+
+    private static void change() {
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(a[i][j] != b[i][j]) {
+                    convert(i, j);
+                }
+                if(isSame()) return;
+            }
+        }
+        // 1. 같은적이 없으면 -1
+        cnt = -1;
+    }
+
+    private static boolean isSame() {
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(a[i][j] != b[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private static void convert(int x, int y) {
+        boolean stop = false;
+        for(int i = 0; i < 9; i++) {
+            int nx = x + move[i][0];
+            int ny = y + move[i][1];
+            if(!canMove(nx, ny)) {
+                stop = true;
+                break;
+            }
+        }
+        // 3*3이 성립할 때만 계산
+        if(!stop) {
+            for(int i = 0; i < 9; i++) {
+                int nx = x + move[i][0];
+                int ny = y + move[i][1];
+                if(a[nx][ny] == 0) {
+                    a[nx][ny] = 1;
+                }
+                else if(a[nx][ny] == 1) {
+                    a[nx][ny] = 0;
+                }
+            }
+            cnt++;
+        }
+    }
+
+    private static boolean canMove(int x, int y) {
+        if(x < 0 || x >= n || y < 0 || y >= m) return false;
+        return true;
+    }
+}
