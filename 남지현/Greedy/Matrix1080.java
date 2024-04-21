@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Matrix1080 {
+public class Main {
     static int[][] dep;
     static int[][] dst;
 
