@@ -1,3 +1,5 @@
+//[프로그래머스] 에어컨 (https://school.programmers.co.kr/learn/courses/30/lessons/214289)
+
 import java.util.*;
 
 class Solution {
@@ -27,7 +29,7 @@ class Solution {
             }
             
             for(int j=start; j<=end; j++) {
-                int temp= Integer.MAX_VALUE;
+                int temp = Integer.MAX_VALUE;
                 
                 //dp[i-1][j]
                 if(dp[i-1][j] == Integer.MAX_VALUE);
@@ -36,7 +38,7 @@ class Solution {
                 else
                     temp = dp[i-1][j] + b;
                 
-                //dp[i-1][j-1] -> +1필요. (현재 온도가 실외온도보다 낮으면 에어컨 꺼서 높임.)
+                //dp[i-1][j-1] -> +1필요. (현재 온도가 실외온도보다 낮으면 에어컨 꺼서 높임./실외온도가 현재 온도보다 높으면 에어컨 꺼서 높임)
                 if (j<1 || dp[i-1][j-1] == Integer.MAX_VALUE);
                 else if(j-1 < temperature)
                     temp = Math.min(temp, dp[i-1][j-1]);
@@ -44,8 +46,8 @@ class Solution {
                     temp = Math.min(temp, dp[i-1][j-1] + a);
                 
                 //dp[i-1][j+1] -> -1 필요.(현재 온도가 실외온도보다 높으면 에어컨 꺼서 낮춤.)
-                if(j>=49 || dp[i-1][j+1]== Integer.MAX_VALUE);
-                else if(j+1> temperature)
+                if(j>49 || dp[i-1][j+1]== Integer.MAX_VALUE);
+                else if(j+1 > temperature)
                     temp = Math.min(temp, dp[i-1][j+1]);
                 else
                     temp = Math.min(temp, dp[i-1][j+1]+a);
@@ -53,8 +55,9 @@ class Solution {
                 dp[i][j] = temp;
             }
         }
-        
+
         Arrays.sort(dp[cnt-1]);
         return dp[cnt-1][0];
     }
+    
 }
