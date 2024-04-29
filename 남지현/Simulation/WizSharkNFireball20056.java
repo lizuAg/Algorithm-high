@@ -19,8 +19,9 @@ class Main {
                 }
                 map.get(np).add(balls.get(i));
             }
-            for (Point point : map.keySet()) {
-                List<int[]> ballList = map.get(point);
+            for (Map.Entry<Point, List<int[]>> entry : map.entrySet()) {
+		Point point = entry.getKey();
+                List<int[]> ballList = entry.getValue();
                 int count = ballList.size();
                 if (count == 1) {
                     for (int[] ball: ballList) {
@@ -69,7 +70,7 @@ class Main {
             mod += N;
         return mod;
     }
-    
+
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(bf.readLine());
@@ -91,7 +92,7 @@ class Main {
     static class Point {
         int x;
         int y;
-        
+
         Point(int x, int y) {
             this.x = x;
             this.y = y;
