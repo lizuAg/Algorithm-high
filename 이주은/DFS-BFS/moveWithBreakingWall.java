@@ -1,5 +1,3 @@
-//백준 2206번 벽 부수고 이동하기 (https://www.acmicpc.net/submit/2206/78040981)
-
 import java.util.*;
 import java.io.*;
 
