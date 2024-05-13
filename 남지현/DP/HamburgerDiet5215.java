@@ -7,7 +7,6 @@ class Main {
         int T = Integer.parseInt(bf.readLine());
         
         for(int test_case = 1; test_case <= T; test_case++) {
-            int answer = 0;
             StringTokenizer st = new StringTokenizer(bf.readLine());
             int N = Integer.parseInt(st.nextToken());
             int L = Integer.parseInt(st.nextToken());
