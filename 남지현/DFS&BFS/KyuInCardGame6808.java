@@ -5,13 +5,13 @@ class Solution {
     
     static boolean[] visited;
     static int[] kyu;
-    static int count;
-    
-    static final int SUM = 9*8*7*6*5*4*3*2;
+    static int kCount;
+    static int iCount;
 
     private static void dfs(int round, int kyuScore, int inScore) {
         if (round==10) {
-            if (kyuScore > inScore) count++;
+            if (kyuScore > inScore) kCount++;
+            else if (kyuScore < inScore) iCount++;
             return;
         }
         for (int i=1; i<=18; i++) {
@@ -41,10 +41,11 @@ class Solution {
                 kyu[i] = Integer.parseInt(st.nextToken());
                 visited[kyu[i]] = true;
             }
-            count=0;
+            kCount=0;
+            iCount=0;
             dfs(1, 0, 0);
             StringBuilder builder = new StringBuilder();
-            builder.append("#").append(test_case).append(" ").append(count).append(" ").append(SUM-count);
+            builder.append("#").append(test_case).append(" ").append(kCount).append(" ").append(iCount);
             System.out.println(builder.toString());
         }
         bf.close();
