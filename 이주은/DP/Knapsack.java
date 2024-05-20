@@ -1,3 +1,5 @@
+//BOJ 12865번 평범한 배낭(https://www.acmicpc.net/submit/12865/78588419)
+
 import java.util.*;
 import java.io.*;
 
@@ -38,6 +40,7 @@ class Main {
             items[i][0] = Integer.parseInt(line[0]);
             items[i][1] = Integer.parseInt(line[1]);
         }
+
         
         br.close();
     }
