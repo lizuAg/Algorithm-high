@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-// 최소비용 구하기(꼴드 5)
+// 최소비용 구하기(골드 5)
 // 다익스트라
 public class BaekJoon1916 {
     public static void main(String[] args) throws IOException {
