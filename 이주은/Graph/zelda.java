@@ -33,7 +33,7 @@ class Main {
     }
 
     static int solve() throws IOException {
-        Queue<int[]> queue = new LinkedList<>();
+        PriorityQueue<int[]> pq = new PriorityQueue<>((arr1, arr2) -> arr1[2] - arr2[2]);
         int[][] loss = new int[N][N];
         
         for(int i = 0 ; i<N; i++) {
@@ -42,17 +42,19 @@ class Main {
             }
         }
 
-        queue.offer(new int[] {0, 0});
-        loss[0][0] = map[0][0];
+        pq.add(new int[] {0, 0, map[0][0]});
 
-        while(!queue.isEmpty()) {
-            int[] curr = queue.poll();
+        while(!pq.isEmpty()) {
+            int[] curr = pq.remove();
             int r = curr[0];
             int c = curr[1];
+            int l = curr[2];
 
-            if(r == N-1 && c == N-1)
-                continue;
-
+            if(l >= loss[r][c])
+               continue;
+            
+            loss[r][c] = l;
+            
             for(int i=0; i<4; i++) {
                 int nr = r + dr[i];
                 int nc = c + dc[i];
@@ -61,8 +63,7 @@ class Main {
                     continue;
 
                 if(loss[nr][nc] > loss[r][c] + map[nr][nc]) {
-                    queue.offer(new int[] {nr, nc});
-                    loss[nr][nc] = loss[r][c] + map[nr][nc];
+                    pq.add(new int[] {nr, nc, loss[r][c] + map[nr][nc]});
                 }
             }
         }
