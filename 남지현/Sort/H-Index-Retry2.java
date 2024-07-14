@@ -1,5 +1,7 @@
 import java.util.*;
 
+프로그래머스 lv2 - H-Index (이전 풀이 참고)
+
 class Solution {
     public int solution(int[] citations) {
         int answer = 0;
