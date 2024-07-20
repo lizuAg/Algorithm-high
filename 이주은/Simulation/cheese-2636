@@ -1,0 +1,76 @@
+//백준 2636번 치즈
+
+import java.util.*;
+import java.io.*;
+
+class Main {
+    static int N, M, remain, time = 1;
+    static boolean[][] map;
+    static boolean[][] visited;
+    static Queue<int[]> queue = new LinkedList<>();
+
+    static int[][] delta = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    
+    public static void main(String[] args) throws Exception {
+        getInput();
+
+        while (true) {   
+            visited = new boolean[N][M];
+
+            checkAir(0, 0);
+
+            if(remain == queue.size())
+                break;
+            else {
+                time++;
+                remain -= queue.size();
+            }
+            
+            while(!queue.isEmpty()) {
+                int[] melt = queue.poll();
+                map[melt[0]][melt[1]] = false;
+            }
+
+        }//while-end
+
+        System.out.println(time + " "+ remain);
+    }
+
+    private static void checkAir(int i, int j) {
+        for(int[] d : delta) {
+            int ni = i + d[0];
+            int nj = j + d[1];
+
+            if(ni < 0 || ni >= N || nj < 0 || nj >= M || visited[ni][nj])
+                continue;
+
+            if(map[ni][nj]) {
+                visited[ni][nj] = true;
+                queue.add(new int[] {ni, nj});
+            }
+            else {
+                visited[ni][nj] = true;
+                checkAir(ni, nj);
+            }
+        }
+    }
+
+    private static void getInput() throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        map = new boolean[N][M];
+
+        for(int i=0; i<N; i++) {
+            st = new StringTokenizer(br.readLine());
+            for(int j=0; j<M; j++) {
+                if(st.nextToken().equals("1")) {
+                    map[i][j] = true;
+                    remain++;
+                }
+            }
+        }
+    }
+}
